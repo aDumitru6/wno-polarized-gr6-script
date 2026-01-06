@@ -9,11 +9,11 @@ import matplotlib.pyplot as plt
 
 wavelength       = 700 * 10**(-9)          # The laser wavelength
 biref_thickness  = 0.1                     # The birefringent block length
-blockArea        = 0.0001                  # The area of the face to which stress is applied
+blockArea        = 0.01                  # The area of the face to which stress is applied
 idenitity_matrix = np.array([[1,0],[0,1]]) # 2x2 idenitity matrix
 C_upper          = 1.0*10**(-10)           # Upper estimate for C
 C_lower          = 5.3*10**(-12)           # Lower estimate for C
-mass_max         = 100                     # Maximum mass to put on the block
+mass_max         = 15                    # Maximum mass to put on the block
 g                = 9.81                    # Gravitational acceleration
 
 def add_polarizer(smatrix, angle):
@@ -138,7 +138,7 @@ for i in range(len(polarizer_angles)):
 for angle in polarizer_angles:
     ax[0].plot(index_refr_lower*(blockArea)/(C_lower*g), 
                transmission_lower[list(polarizer_angles).index(angle),:], 
-               label = f"P2: {round(angle/np.pi - 0.25,2)}, maxDiff: {round(max(transmission_lower[list(polarizer_angles).index(angle),:])-min(transmission_lower[list(polarizer_angles).index(angle),:]),2)}")
+               label = f"P2: {round(angle/np.pi - 0.25,2)}, maxDiff: {round(max(transmission_lower[list(polarizer_angles).index(angle),:])-min(transmission_lower[list(polarizer_angles).index(angle),:]),4)}")
 
 # Refine the figure
 ax[0].set_title ("Lowball estimate, T vs mass, different P2-P1 angles")
@@ -160,7 +160,7 @@ for i in range(len(polarizer_angles)):
 for angle in polarizer_angles:
     ax[1].plot(index_refr_upper*(blockArea)/(C_upper*g), 
                transmission_upper[list(polarizer_angles).index(angle),:], 
-               label = f"P2: {round(angle/np.pi - 0.25,2)}, maxDiff: {round(max(transmission_upper[list(polarizer_angles).index(angle),:])-min(transmission_upper[list(polarizer_angles).index(angle),:]),2)}")
+               label = f"P2: {round(angle/np.pi - 0.25,2)}, maxDiff: {round(max(transmission_upper[list(polarizer_angles).index(angle),:])-min(transmission_upper[list(polarizer_angles).index(angle),:]),4)}")
 
 # Refine the figure
 ax[1].set_title(f"Highball estimate, T vs mass, different P2-P1 angles")
