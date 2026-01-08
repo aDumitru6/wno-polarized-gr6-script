@@ -8,12 +8,12 @@ import numpy as np
 import matplotlib.pyplot as plt 
 
 wavelength       = 700 * 10**(-9)          # The laser wavelength
-biref_thickness  = 0.1                     # The birefringent block length
-blockArea        = 0.01                  # The area of the face to which stress is applied
+biref_thickness  = 0.022                     # The birefringent block length
+blockArea        = np.pi*(0.2*3.4)*10**(-4)# The area of the face to which stress is applied
 idenitity_matrix = np.array([[1,0],[0,1]]) # 2x2 idenitity matrix
 C_upper          = 1.0*10**(-10)           # Upper estimate for C
 C_lower          = 5.3*10**(-12)           # Lower estimate for C
-mass_max         = 15                    # Maximum mass to put on the block
+mass_max         = 15                      # Maximum mass to put on the block
 g                = 9.81                    # Gravitational acceleration
 
 def add_polarizer(smatrix, angle):
