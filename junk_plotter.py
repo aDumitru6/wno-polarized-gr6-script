@@ -11,7 +11,7 @@ dataPath = os.path.join(os.getcwd(), 'data', filename)
 data = np.loadtxt(dataPath, skiprows=1, usecols=[6,7], encoding='UTF-8', delimiter=',', dtype='U')
 
 # Select only the desired data
-data = np.array(data[0:7952,:])
+data = np.array(data[0:4000,:])
 data = data.astype('f')
 
 # Plot it
