@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-
 ## Imports
 import numpy as np
 from matplotlib.pyplot import figure, show
@@ -33,15 +32,22 @@ rI = np.array(rI)
 print(f'run: {run}\nspacing: {spacing}')
 
 # Matplotlib type shit
-ind = int(0/(dt*spacing))
+cutoff = 0
+ind = int(cutoff/(dt*spacing))
 
 fig = figure(figsize=(16, 9), tight_layout=True)
 frame = fig.add_subplot(111)
-frame.plot(rt[ind:], rI[ind:], c='r', label=f'run 1')
-frame.set_ylim(0, 100)
+frame.scatter(rt[ind:], rI[ind:], s=0.1, c='r', label=f'run 1')
+#frame.set_ylim(5, 20)
+#frame.set_xlim(cutoff, 450)
+
+# Setting vertical lines to check where everything is
+frame.vline(
+
+
+
 frame.set_xlabel('time')
 frame.set_ylabel('intensity %')
 frame.legend()
 frame.grid()
-
 show()
