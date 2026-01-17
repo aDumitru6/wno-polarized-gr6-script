@@ -8,11 +8,8 @@ import os
 import pathlib
 
 ## Functions
-def birefringence(theta, k, bleed):
-    return 1/2 * (1 - np.sin(2*(90-theta)*np.pi/180)*np.sin(k)**2) + bleed 
-
-def birefringence(theta2, theta1, k):
-    return np.cos(theta1 - theta2)**2 - np.sin(2*theta1)*np.sin(2*theta2)*np.sin(k)**2
+def birefringence(theta2, theta1, k, bleed):
+    return np.cos(theta1 - theta2)**2 - np.sin(2*theta1)*np.sin(2*theta2)*np.sin(k)**2 + bleed
 
 ## Importing data
 dataPath = os.path.join(os.getcwd(), '..', 'data', 'Tweaking', 'Lab2', 'Lab_2_tweaked.csv')
@@ -146,10 +143,10 @@ print(popt)
 theta1 = popt[0] * 180 / np.pi
 k = popt[1]
 Cs0 = k * 4.05*10**(-7) / (np.pi * 0.06)
-#bleed = popt[2]
+bleed = popt[2]
 print(f'theta1 (deg): {theta1}')
 print(f'C*s0        : {Cs0}')
-#print(f'bleed       : {bleed}')
+print(f'bleed       : {bleed}')
 
 
 fig = figure(figsize=(16,9))
