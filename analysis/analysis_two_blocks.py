@@ -24,7 +24,7 @@ for col in np.arange(0, 20, 2):
 dat = np.array(dat)
 
 # Choosing a run and a spacing between the data points
-run = 8
+run = 9
 
 spacing = 1 # only showing every n-th point so we render less
 rt = []
@@ -37,7 +37,7 @@ rI = np.array(rI)
 print(f'run: {run}\nspacing: {spacing}')
 
 # Matplotlib type shit
-cutoff = 200
+cutoff = 50
 ind = int(cutoff/(dt*spacing))
 
 fig = figure(figsize=(16, 4), tight_layout=True)
@@ -49,70 +49,70 @@ frame.plot(rt[ind:], rI[ind:], c='r', label=f'lab run {run+3}')
 # Setting vertical lines to check where everything is
 # taking the mean between the vertical lines to get the intensity of each angle
 ## 150
-frame.vlines(230, ymin=0, ymax=100, colors='b')
-frame.vlines(250, ymin=0, ymax=100, colors='b')
-I150 = rI[int(230//dt):int(250//dt)].mean()
-I150s= rI[int(230//dt):int(250//dt)].std()
+frame.vlines(105, ymin=0, ymax=100, colors='b')
+frame.vlines(120, ymin=0, ymax=100, colors='b')
+I150 = rI[int(105//dt):int(120//dt)].mean()
+I150s= rI[int(105//dt):int(120//dt)].std()
 
 ## 145
-frame.vlines(265, ymin=0, ymax=100, colors='g')
-frame.vlines(310, ymin=0, ymax=100, colors='g')
-I145 = rI[int(265//dt):int(310//dt)].mean()
-I145s= rI[int(265//dt):int(310//dt)].std()
+frame.vlines(130, ymin=0, ymax=100, colors='g')
+frame.vlines(155, ymin=0, ymax=100, colors='g')
+I145 = rI[int(130//dt):int(155//dt)].mean()
+I145s= rI[int(130//dt):int(155//dt)].std()
 
 ## 140
-frame.vlines(325, ymin=0, ymax=100, colors='m')
-frame.vlines(360, ymin=0, ymax=100, colors='m')
-I140 = rI[int(325//dt):int(360//dt)].mean()
-I140s= rI[int(325//dt):int(360//dt)].std()
+frame.vlines(165, ymin=0, ymax=100, colors='m')
+frame.vlines(175, ymin=0, ymax=100, colors='m')
+I140 = rI[int(165//dt):int(175//dt)].mean()
+I140s= rI[int(165//dt):int(175//dt)].std()
 
 ## 135
-frame.vlines(375, ymin=0, ymax=100, colors='y')
-frame.vlines(390, ymin=0, ymax=100, colors='y')
-I135 = rI[int(375//dt):int(390//dt)].mean()
-I135s= rI[int(375//dt):int(390//dt)].std()
+frame.vlines(185, ymin=0, ymax=100, colors='y')
+frame.vlines(205, ymin=0, ymax=100, colors='y')
+I135 = rI[int(185//dt):int(205//dt)].mean()
+I135s= rI[int(185//dt):int(205//dt)].std()
 
 ## 130
-frame.vlines(405, ymin=0, ymax=100, colors='c')
-frame.vlines(425, ymin=0, ymax=100, colors='c')
-I130 = rI[int(405//dt):int(425//dt)].mean()
-I130s= rI[int(405//dt):int(425//dt)].std()
+frame.vlines(215, ymin=0, ymax=100, colors='c')
+frame.vlines(230, ymin=0, ymax=100, colors='c')
+I130 = rI[int(215//dt):int(230//dt)].mean()
+I130s= rI[int(215//dt):int(230//dt)].std()
 
 ## 125
-frame.vlines(435, ymin=0, ymax=100, colors='k')
-frame.vlines(445, ymin=0, ymax=100, colors='k')
-I125 = rI[int(435//dt):int(445//dt)].mean()
-I125s= rI[int(435//dt):int(445//dt)].std()
+frame.vlines(255, ymin=0, ymax=100, colors='k')
+frame.vlines(263, ymin=0, ymax=100, colors='k')
+I125 = rI[int(255//dt):int(263//dt)].mean()
+I125s= rI[int(255//dt):int(263//dt)].std()
 
 ## 155
-frame.vlines(475, ymin=0, ymax=100, colors='g')
-frame.vlines(493, ymin=0, ymax=100, colors='g')
-I155 = rI[int(475//dt):int(493//dt)].mean()
-I155s= rI[int(475//dt):int(493//dt)].std()
+frame.vlines(275, ymin=0, ymax=100, colors='g')
+frame.vlines(295, ymin=0, ymax=100, colors='g')
+I155 = rI[int(275//dt):int(295//dt)].mean()
+I155s= rI[int(275//dt):int(295//dt)].std()
 
 ## 160
-frame.vlines(503, ymin=0, ymax=100, colors='m')
-frame.vlines(520, ymin=0, ymax=100, colors='m')
-I160 = rI[int(503//dt):int(520//dt)].mean()
-I160s= rI[int(503//dt):int(520//dt)].std()
+frame.vlines(305, ymin=0, ymax=100, colors='m')
+frame.vlines(315, ymin=0, ymax=100, colors='m')
+I160 = rI[int(305//dt):int(315//dt)].mean()
+I160s= rI[int(305//dt):int(315//dt)].std()
 
 ## 165
-frame.vlines(530, ymin=0, ymax=100, colors='y')
-frame.vlines(550, ymin=0, ymax=100, colors='y')
-I165 = rI[int(530//dt):int(550//dt)].mean()
-I165s= rI[int(530//dt):int(550//dt)].std()
+frame.vlines(326, ymin=0, ymax=100, colors='y')
+frame.vlines(332, ymin=0, ymax=100, colors='y')
+I165 = rI[int(326//dt):int(332//dt)].mean()
+I165s= rI[int(326//dt):int(332//dt)].std()
 
 ## 170
-frame.vlines(565, ymin=0, ymax=100, colors='c')
-frame.vlines(573, ymin=0, ymax=100, colors='c')
-I170 = rI[int(565//dt):int(573//dt)].mean()
-I170s= rI[int(565//dt):int(573//dt)].std()
+frame.vlines(350, ymin=0, ymax=100, colors='c')
+frame.vlines(365, ymin=0, ymax=100, colors='c')
+I170 = rI[int(350//dt):int(365//dt)].mean()
+I170s= rI[int(350//dt):int(365//dt)].std()
 
 ## 175
-frame.vlines(585, ymin=0, ymax=100, colors='k')
-frame.vlines(610, ymin=0, ymax=100, colors='k')
-I175 = rI[int(585//dt):int(610//dt)].mean()
-I175s= rI[int(585//dt):int(610//dt)].std()
+frame.vlines(375, ymin=0, ymax=100, colors='k')
+frame.vlines(400, ymin=0, ymax=100, colors='k')
+I175 = rI[int(375//dt):int(400//dt)].mean()
+I175s= rI[int(375//dt):int(400//dt)].std()
 
 
 
@@ -121,8 +121,8 @@ frame.set_ylabel('intensity %')
 frame.legend()
 frame.grid()
 frame.set_ylim(35, 50)
-frame.set_xlim(cutoff, 620)
-frame.set_xticks(np.arange(200, 620, 10))
+frame.set_xlim(cutoff, 440)
+frame.set_xticks(np.arange(50, 420, 10))
 show()
 
 # Putting everyhing in an array
