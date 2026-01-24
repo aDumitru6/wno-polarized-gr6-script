@@ -13,7 +13,7 @@ The file structure will be explained in this README.
   * Tweaking: Something (we, the experimenters would like to thank ... yk the rest) Robert Grumeza, Astronomy BSc might need to rename. Contains edited versions of all of the data, patches "holes" in the csvs (i.e makes it so that spots where "" occurs to "0"), to make data analysis easier.
 
 * simulations: This folder contains all of the simulation scripts used in the Discussion section of the report.
-  * interferometer_simulation.py: Used to validate theories on systematic sinusoidal "drift" found in data by looking into interferometer issues.
-  * compression_simulator.py: Used to validate theories on systematic sinusoidal "drift" found in data by looking into PMMA block compression, caused due to the additon of the weights.
-  * polarizer_simulation.py: Used to check whether problems potentially caused by imperfect polarizers could lead to issues consistent with systemic errors seen in the data collected.
+  * interferometer_simulation.py: Used to simulate a different setup that was unused in this experiment, that based itself on interferometry.
+  * compression_simulator.py: Used to simulate the effect of mechanical rotations under a specified frictional regime, used to check the fesibility of the time taken by the PMMA to slide in the experiment.
+  * polarizer_simulation.py: Used to simulate the polarimetric setup used in the experiment, to check the transmission difference for different stressed, with the photoelastic coefficient found in literature.
   * rotation_effects.ipynb: Used to understand if rotation due to placing weights on the PMMA / other reasons could lead to issues consistent with systemic errors seen in the data collected. Plot found in this file was used in the final report.
