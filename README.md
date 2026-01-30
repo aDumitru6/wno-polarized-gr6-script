@@ -12,7 +12,7 @@ The file structure will be explained in this README.
   * Lab3: Data collected in Lab 3. This data uses the new technique mentioned in the methods section of our report, specifically continously placing and removing blocks to gather a lot of data in a shorter period of time. (Cycle method: 0 -> 1 -> 2 weights inducing stress on the PMMA block).
   * Tweaking: Something (we, the experimenters would like to thank ... yk the rest) Robert Grumeza, Astronomy BSc might need to rename. Contains edited versions of all of the data, patches "holes" in the csvs (i.e makes it so that spots where "" occurs to "0"), to make data analysis easier.
 
-* simulations: This folder contains all of the simulation scripts used in the Discussion section of the report.
+* interferometer_simulation, mechanical_compression_and_rotation, polarizer_simulation: These folders contains all of the simulation scripts used in the Discussion section of the report.
   * interferometer_simulation.py: Used to simulate a different setup that was unused in this experiment, that based itself on interferometry.
   * compression_simulator.py: Used to simulate the effect of mechanical rotations under a specified frictional regime, used to check the fesibility of the time taken by the PMMA to slide in the experiment.
   * polarizer_simulation.py: Used to simulate the polarimetric setup used in the experiment, to check the transmission difference for different stressed, with the photoelastic coefficient found in literature.
