@@ -3,9 +3,18 @@
 ## Imports
 import numpy as np
 from scipy.optimize import curve_fit
-from matplotlib.pyplot import figure, show
+from matplotlib.pyplot import figure, show, style, rcParams
+import scienceplots
 import os
 import pathlib
+
+
+## Nice Graphs
+style.use(['science'])
+rcParams.update({
+    "axes.labelsize": 16,  # Axis labels
+    "axes.titlesize": 18,  # Title
+})
 
 ## Functions
 def birefringence(theta2, theta1, k, bleed):
@@ -129,7 +138,7 @@ show()
 intensities = np.array([I125, I130, I135, I140, I145, I150, I155, I160, I165, I170, I175])
 errors = np.array([I125s, I130s, I135s, I140s, I145s, I150s, I155s, I160s, I165s, I170s, I175s])
 theta = np.arange(125, 180, 5) * np.pi / 180
-t = np.linspace(125, 180) * np.pi / 180
+t = np.linspace(125, 175) * np.pi / 180
 print(intensities)
 # normalize
 intensities = (intensities - 0.2) / (60-0.2)
@@ -137,24 +146,28 @@ errors = errors / (60-0.2)
 
 # Fitting
 popt, pcov = curve_fit(birefringence, theta, intensities)
+err = np.sqrt(np.diag(pcov))
 print(popt)
 theta1 = popt[0] * 180 / np.pi
 k = popt[1]
 Cs0 = k * 4.05*10**(-7) / (np.pi * 0.06)
+Cs0err = err[1] * 4.05*10**(-7) / (np.pi * 0.06)
 bleed = popt[2]
-print(f'theta1 (deg): {theta1}')
-print(f'C*s0        : {Cs0}')
-print(f'bleed       : {bleed}')
+print(f'theta1 (deg): {theta1} +- {err[0] * 180 / np.pi}')
+print(f'C*s0        : {Cs0} +- {Cs0err}')
+print(f'bleed       : {bleed} +- {err[2]}')
 
 
-fig = figure(figsize=(16,9))
+fig = figure(figsize=(8,6))
 frame = fig.add_subplot(111)
-frame.errorbar(theta, intensities, yerr=errors, color='r', capsize=5, fmt='.',label='internal birefringence')
-frame.plot(t, birefringence(t, *popt))
+frame.errorbar(theta, intensities, yerr=errors, color='r', capsize=5, fmt='.',label='Two Weights')
+frame.plot(t, birefringence(t, *popt), label='Fit')
 
-frame.set_xlabel('theta (rad)')
-frame.set_ylabel('Normalized intensity')
+frame.set_title('PMMA sample stressed by two weights')
+frame.set_xlabel(r'$\theta$ (rad)')
+frame.set_ylabel('Normalized Intensity')
 frame.legend()
 frame.grid()
 show()
 
+fig.savefig('Two_blocks.png')

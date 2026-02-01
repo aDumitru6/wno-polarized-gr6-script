@@ -3,18 +3,9 @@
 ## Imports
 import numpy as np
 from scipy.optimize import curve_fit
-from matplotlib.pyplot import figure, show, style, rcParams
-import scienceplots
+from matplotlib.pyplot import figure, show
 import os
 import pathlib
-
-
-## Nice Graphs
-style.use(['science'])
-rcParams.update({
-    "axes.labelsize": 16,  # Axis labels
-    "axes.titlesize": 18,  # Title
-})
 
 ## Functions
 def birefringence(theta2, theta1, k, bleed):
@@ -33,7 +24,7 @@ for col in np.arange(0, 20, 2):
 dat = np.array(dat)
 
 # Choosing a run and a spacing between the data points
-run = 5
+run = 0
 
 spacing = 1 # only showing every n-th point so we render less
 rt = []
@@ -133,8 +124,8 @@ frame.set_xlabel('time')
 frame.set_ylabel('intensity %')
 frame.legend()
 frame.grid()
-frame.set_ylim(35, 50)
-frame.set_xticks(np.arange(0, 430, 10))
+frame.set_ylim(10, 50)
+frame.set_xticks(np.arange(0, 500, 10))
 show()
 
 # Putting everyhing in an array
@@ -143,7 +134,7 @@ errors = np.array([I125s, I130s, I135s, I140s, I145s, I150s, I155s, I160s, I165s
 theta = np.arange(125, 180, 5) * np.pi / 180
 t = np.linspace(125, 175) * np.pi / 180
 # normalize
-intensities = (intensities - 0.2) / (60-0.2)
+intensities = (intensities - 26) / 469.84
 errors = errors / (60-0.2)
 
 # Fitting
@@ -162,12 +153,12 @@ print(f'bleed       : {bleed} +- {err[2]}')
 
 fig = figure(figsize=(8,6))
 frame = fig.add_subplot(111)
-frame.errorbar(theta, intensities, yerr=errors, capsize=5, color='r', fmt='.',label='Internal Birefringence')
-frame.plot(t, birefringence(t, *popt), label='Fit')
+frame.errorbar(theta, intensities, yerr=errors, color='r', capsize=5, fmt='.',label='internal birefringence')
+frame.plot(t, birefringence(t, *popt), c='b', label='Fit')
 
 frame.set_title('Unstressed PMMA sample')
-frame.set_xlabel(r'$\theta$ (rad)')
-frame.set_ylabel('Normalized Intensity')
+frame.set_xlabel('theta (rad)')
+frame.set_ylabel('Normalized intensity')
 frame.legend()
 frame.grid()
 show()
