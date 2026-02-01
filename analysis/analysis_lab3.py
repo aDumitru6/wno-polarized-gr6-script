@@ -3,28 +3,37 @@
 ## Imports
 import numpy as np
 from scipy.optimize import curve_fit
-from matplotlib.pyplot import figure, show
+from matplotlib.pyplot import figure, show, style, rcParams
+import scienceplots
 import os
 import pathlib
+
+
+## Nice Graphs
+style.use(['science'])
+rcParams.update({
+    "axes.labelsize": 16,  # Axis labels
+    "axes.titlesize": 18,  # Title
+})
 
 ## Functions
 def birefringence(theta2, theta1, k, bleed):
     return np.cos(theta1 - theta2)**2 - np.sin(2*theta1)*np.sin(2*theta2)*np.sin(k)**2 + bleed
 
 ## Importing data
-dataPath = os.path.join(os.getcwd(), '..', 'data', 'Tweaking', 'Lab2', 'Lab_2_tweaked.csv')
+dataPath = os.path.join(os.getcwd(), '..', 'data', 'Tweaking', 'Lab3', 'lab_3_p2_tweaked.csv')
 data = np.loadtxt(dataPath, skiprows=1, encoding='UTF-8', delimiter=',', dtype='float64')
 dt = 0.05
 
 dat = []
-for col in np.arange(0, 20, 2):
+for col in np.arange(0, 6, 2):
     # Tuple with (time, intensity)
     tup = (data[:, col], data[:, col+1])
     dat.append(tup)
 dat = np.array(dat)
 
 # Choosing a run and a spacing between the data points
-run = 0
+run = 1
 
 spacing = 1 # only showing every n-th point so we render less
 rt = []
@@ -42,10 +51,10 @@ ind = int(cutoff/(dt*spacing))
 
 fig = figure(figsize=(16, 4), tight_layout=True)
 frame = fig.add_subplot(111)
-frame.plot(rt[ind:], rI[ind:], c='r', label=f'lab run {run+4}')
+frame.plot(rt[ind:], rI[ind:], c='r', label=f'lab run {run+5}')
 #frame.set_ylim(5, 20)
 #frame.set_xlim(cutoff, 450)
-
+"""
 # Setting vertical lines to check where everything is
 # taking the mean between the vertical lines to get the intensity of each angle
 ## 150 (ignore this one)
@@ -117,24 +126,25 @@ frame.vlines(405, ymin=0, ymax=100, colors='k')
 frame.vlines(420, ymin=0, ymax=100, colors='k')
 I175 = rI[int(405//dt):int(420//dt)].mean()
 I175s= rI[int(405//dt):int(420//dt)].std()
-
+"""
 
 
 frame.set_xlabel('time')
 frame.set_ylabel('intensity %')
 frame.legend()
 frame.grid()
-frame.set_ylim(10, 50)
-frame.set_xticks(np.arange(0, 500, 10))
+#frame.set_ylim(35, 50)
+#frame.set_xticks(np.arange(0, 430, 10))
 show()
 
+"""
 # Putting everyhing in an array
 intensities = np.array([I125, I130, I135, I140, I145, I150, I155, I160, I165, I170, I175])
 errors = np.array([I125s, I130s, I135s, I140s, I145s, I150s, I155s, I160s, I165s, I170s, I175s])
 theta = np.arange(125, 180, 5) * np.pi / 180
 t = np.linspace(125, 175) * np.pi / 180
 # normalize
-intensities = (intensities - 26) / 469.84
+intensities = (intensities - 0.2) / (60-0.2)
 errors = errors / (60-0.2)
 
 # Fitting
@@ -153,14 +163,15 @@ print(f'bleed       : {bleed} +- {err[2]}')
 
 fig = figure(figsize=(8,6))
 frame = fig.add_subplot(111)
-frame.errorbar(theta, intensities, yerr=errors, color='r', capsize=5, fmt='.',label='internal birefringence')
-frame.plot(t, birefringence(t, *popt), c='b', label='Fit')
+frame.errorbar(theta, intensities, yerr=errors, capsize=5, color='r', fmt='.',label='Internal Birefringence')
+frame.plot(t, birefringence(t, *popt), label='Fit')
 
 frame.set_title('Unstressed PMMA sample')
-frame.set_xlabel('theta (rad)')
-frame.set_ylabel('Normalized intensity')
-frame.legend()
+frame.set_xlabel(r'$\theta$ (rad)')
+frame.set_ylabel('Normalized Intensity')
+frame.legend(fontsize=16)
 frame.grid()
 show()
 
-fig.savefig('Unstressed.png')
+#fig.savefig('Unstressed.png')
+"""

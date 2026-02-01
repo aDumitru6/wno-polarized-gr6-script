@@ -166,7 +166,7 @@ frame.plot(t, birefringence(t, *popt), label='Fit')
 frame.set_title('PMMA sample stressed by one weight')
 frame.set_xlabel(r'$\theta$ (rad)')
 frame.set_ylabel('Normalized intensity')
-frame.legend()
+frame.legend(fontsize=16)
 frame.grid()
 show()
 
