@@ -9,8 +9,8 @@ The file structure will be explained in this README.
 * data: This folder contains all of the data collected in the project.
   * Lab1: As the name implies, contains all of the data collected in Lab1. Largely useless since better data was collected in future labs.
   * Lab2: Data collected in Lab 2. This data was majorly used in our draft report, and will be used in the final report as well.
-  * Lab3: Data collected in Lab 3. This data uses the new technique mentioned in the methods section of our report, specifically continously placing and removing blocks to gather a lot of data in a shorter period of time. (Cycle method: 0 -> 1 -> 2 weights inducing stress on the PMMA block).
-  * Tweaking: Something (we, the experimenters would like to thank ... yk the rest) Robert Grumeza, Astronomy BSc might need to rename. Contains edited versions of all of the data, patches "holes" in the csvs (i.e makes it so that spots where "" occurs to "0"), to make data analysis easier.
+  * Lab3: Data collected in Lab 3. For our final report this data was not used.
+  * Tweaking: Contains edited/tweaked versions of all of the data, patches "holes" in the csvs (i.e makes it so that spots where "" occurs to "0"), to make data analysis easier.
 
 * interferometer_simulation, mechanical_compression_and_rotation, polarizer_simulation: These folders contains all of the simulation scripts used in the Discussion section of the report.
   * interferometer_simulation.py: Used to simulate a different setup that was unused in this experiment, that based itself on interferometry.
